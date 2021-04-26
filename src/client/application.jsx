@@ -6,6 +6,8 @@ import React, {useState} from "react";
 import {fetchJson} from "./http";
 import {LoginPage} from "./loginPage";
 import {LoginCallback} from "./loginCallback";
+import {CreateUser} from "./createUser";
+import {UserListPage} from "./userListPage";
 
 export function Application() {
     const [access_token, setAccess_token] = useState();
@@ -14,12 +16,6 @@ export function Application() {
         discoveryURL: "https://accounts.google.com/.well-known/openid-configuration",
         client_id: "896911220685-japahfv84ni3vcvesbpsogs9l34vobbr.apps.googleusercontent.com",
     };
-
-
-
-
-
-
 
 
     async function loadProfile(){
@@ -32,6 +28,17 @@ export function Application() {
         });
     }
 
+
+    const userApi = {
+        listUsers: async () => {
+            const res = await  fetch("/api/users");
+            if(!res.ok){
+                throw new Error(
+                    `Something went wrong loading ${res.url}: ${res.statusText}`
+                );
+            }
+        }
+    };
 
     return (
         <BrowserRouter>
@@ -55,10 +62,19 @@ export function Application() {
                 <Route path={"/login/callback"}>
                     <h1><LoginCallback
                         identityProvider={googleIdentityProvider}
-                                       onAccessToken={(access_token) => setAccess_token(access_token)}
-
+                        onAccessToken={(access_token) => setAccess_token(access_token)}
                     /></h1>
                 </Route>
+
+                <Route path={"/users"}>
+                    <UserListPage userApi ={userApi}/>
+                </Route>
+
+                <Route path={"/create"}>
+                    <CreateUser/>
+
+                </Route>
+
                 <Route>
                     <h1>Page not found</h1>
                 </Route>

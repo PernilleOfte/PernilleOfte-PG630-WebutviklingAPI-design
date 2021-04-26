@@ -1,10 +1,17 @@
-
-
 const express = require("express");
 const path = require("path");
 const fetch = require("node-fetch");
+const bodyparser = require("express");
 
 const app = express();
+
+const users = [
+    {
+        firstname: "",
+        lastname: "",
+        email: ""
+    },
+];
 
 const discoveryURL = "https://accounts.google.com/.well-known/openid-configuration";
 
@@ -36,8 +43,26 @@ app.get("/api/profile", async (req,res,next)=> {
 
 });
 
-
+app.use(bodyparser.json());
 app.use(express.static(path.resolve(__dirname, "..", "..", "dist")));
+
+
+app.get("/api/users", (req, res) => {
+    console.log(users);
+    res.json(users);
+});
+
+
+
+app.post("/api/users", (req, res) => {
+    const { firstname, lastname, email } = req.body;
+    console.log(req.body);
+    users.push({ firstname, lastname, email, id: users.length + 1 });
+    res.status(201);
+    res.end();
+});
+
+
 app.use((req,res,next)=> {
     if(req.method === "GET" && !req.path.startsWith("/api")) {
     return res.sendFile(
@@ -46,9 +71,6 @@ app.use((req,res,next)=> {
 }next();
 
 });
-
-
-
 app.listen(3000, () =>{
     console.log("Started on http://localhost:3000");
 });

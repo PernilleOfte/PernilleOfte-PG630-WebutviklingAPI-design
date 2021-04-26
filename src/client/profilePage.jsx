@@ -22,6 +22,9 @@ if(error){
     <h1>Your profile</h1>
         <div> <img src={data.picture}/></div>
         <div>{data.name}</div>
+        <ul>
+            <Link to={"/create"}>Create user</Link>
+        </ul>
     <ul>
         <Link to={"/chat"}>Chat</Link>
     </ul>
