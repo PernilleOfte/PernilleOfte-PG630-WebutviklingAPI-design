@@ -26,7 +26,13 @@ footer form input{
 #main-id {
     background-color: lightgray;
     opacity: 0.5;
-border-style: dotted;
+border-style: solid;
     overflow-y: auto;
+
+}
+/*#chatLog {
+    border: 2px solid;
+    border-radius: 10px;
+
 
 }
