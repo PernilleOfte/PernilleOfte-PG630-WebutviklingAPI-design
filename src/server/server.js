@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const fetch = require("node-fetch");
 const bodyparser = require("express");
+const ws = require("ws");
 
 const app = express();
 
@@ -72,12 +73,19 @@ app.use((req,res,next)=> {
 
 });
 
+const wsServer = new ws.Server({noServer: true});
+wsServer.on("connection", (socket) => {
+    console.log("Client connected");
+    socket.on("message", (message) => socket.send("From server:" + message));
+});
 
 
 
-app.listen(3000, () =>{
-    console.log("Started on http://localhost:3000");
-
-
-
+const server = app.listen(3000, () => {
+    console.log(`Started on port http://localhost:${server.address().port}`);
+server.on("upgrade", (req, res, head) => {
+    wsServer.handleUpgrade(req, res, head, (socket) => {
+        wsServer.emit("connection", socket, req);
+    })
+})
 });

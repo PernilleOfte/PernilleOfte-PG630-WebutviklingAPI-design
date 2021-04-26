@@ -12,7 +12,9 @@ export function ChatApplication() {
             console.log("opened", event);
         }
         ws.onmessage = event => {
-            console.log("message", event);
+            console.log("Fra server", event);
+            setChatLog([...chatLog, event.data])
+
         }
 
         ws.onclose = event => {
@@ -24,7 +26,6 @@ export function ChatApplication() {
 
     function handleSubmitChatMessage(e) {
         e.preventDefault();
-        setChatLog([...chatLog, message])
         ws.send(message);
         setMessage("");
 
