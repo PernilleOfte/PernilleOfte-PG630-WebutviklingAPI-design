@@ -20,7 +20,8 @@ if(error){
 
     return <div>
     <h1>Your profile</h1>
-        <div>{data.username}</div>
+        <div>{data.name}</div>
+        <div> <img src={data.picture}/></div>
     <ul>
         <Link to={"/chat"}>Chat</Link>
     </ul>
