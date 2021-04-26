@@ -2,3 +2,29 @@ body {
     margin: 0;
     background: linear-gradient(89deg, #FF5EDF 0%, #04C8DE 100%);
 }
+
+#root{
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    height: 100vh;
+}
+
+header {
+
+}
+
+
+footer form {
+    display: flex;
+    align-items: stretch;
+}
+
+footer form input{
+    flex: 1;
+}
+
+#main-id {
+border-style: dotted;
+    overflow-y: auto;
+
+}

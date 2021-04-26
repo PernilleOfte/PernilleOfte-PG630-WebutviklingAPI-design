@@ -8,6 +8,7 @@ import {LoginPage} from "./loginPage";
 import {LoginCallback} from "./loginCallback";
 import {CreateUser} from "./createUser";
 import {UserListPage} from "./userListPage";
+import {ChatApplication} from "./chatApplication";
 
 export function Application() {
     const [access_token, setAccess_token] = useState();
@@ -52,7 +53,7 @@ export function Application() {
                 </Route>
 
                 <Route path={"/chat"}>
-                    <h1>This is a chat</h1>
+                    <ChatApplication/>
                 </Route>
 
                 <Route path={"/login"} exact>
@@ -67,7 +68,7 @@ export function Application() {
                 </Route>
 
                 <Route path={"/users"}>
-                    <UserListPage userApi ={userApi}/>
+                    <UserListPage userApi={userApi}/>
                 </Route>
 
                 <Route path={"/create"}>
