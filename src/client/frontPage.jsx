@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 
 export function FrontPage() {
     return<div>
-        <h1>Front page</h1>
+        <h1>Velkommen</h1>
 
         <ul>
             <Link to={"/login"}>Log in</Link>

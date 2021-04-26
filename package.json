@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "concurrently npm:start:parcel npm:start:express",
-    "start:parcel":"parcel public/index.html",
+    "start:parcel": "parcel public/index.html",
     "start:express": "nodemon --watch src/server src/server/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -26,6 +26,8 @@
     "parcel": "^2.0.0-beta.2"
   },
   "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
