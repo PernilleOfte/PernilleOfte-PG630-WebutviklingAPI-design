@@ -29,8 +29,11 @@ export function UserListPage() {
         return <LoadingView/>
     }
 
-    return<div> <h1>List of all the users</h1>
-        {users.map(user => (<li>{user.firstname}</li>))}
-    </div>
-        ;
-}
+    return (
+        <>
+    <h1>All users</h1>
+        {users.map(({users}) => (
+            <li>{users.firstname}</li>
+                ))};
+    </>
+)};

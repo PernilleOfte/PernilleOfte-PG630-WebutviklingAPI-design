@@ -28,5 +28,10 @@ if(error){
     <ul>
         <Link to={"/chat"}>Chat</Link>
     </ul>
+
+            <ul>
+                <Link to={"/users"}>Liste over brukere</Link>
+            </ul>
+
     </div>;
 }

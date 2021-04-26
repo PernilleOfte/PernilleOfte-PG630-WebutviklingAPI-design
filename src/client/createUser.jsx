@@ -32,11 +32,7 @@ export function CreateUser() {
         </div>
         <button>Submit</button>
 
-        <div>
-            <ul>
-                <Link to={"/users"}>Liste over brukere</Link>
-            </ul>
-        </div>
+
     </form>
 
 }
