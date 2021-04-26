@@ -12,7 +12,7 @@ export function ChatApplication() {
     </main>
     <footer id="footer-id">
         <form>
-            <input type="text"/>
+            <input type="text" autoFocus={true}/>
             <button>Submit</button>
         </form>
     </footer>

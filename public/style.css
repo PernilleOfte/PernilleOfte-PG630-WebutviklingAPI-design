@@ -24,6 +24,8 @@ footer form input{
 }
 
 #main-id {
+    background-color: lightgray;
+    opacity: 0.5;
 border-style: dotted;
     overflow-y: auto;
 
