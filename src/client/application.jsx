@@ -5,6 +5,7 @@ import {ProfilePage} from "./profilePage";
 import React, {useState} from "react";
 import {fetchJson} from "./http";
 import {LoginPage} from "./loginPage";
+import {LoginCallback} from "./loginCallback";
 
 export function Application() {
     const [access_token, setAccess_token] = useState();
@@ -52,7 +53,11 @@ export function Application() {
                 </Route>
 
                 <Route path={"/login/callback"}>
-                    <h1>Login Callback</h1>
+                    <h1><LoginCallback
+                        identityProvider={googleIdentityProvider}
+                                       onAccessToken={(access_token) => setAccess_token(access_token)}
+
+                    /></h1>
                 </Route>
                 <Route>
                     <h1>Page not found</h1>
