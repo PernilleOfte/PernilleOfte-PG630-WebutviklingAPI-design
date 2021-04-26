@@ -13,7 +13,7 @@ export function ChatApplication() {
         }
         ws.onmessage = event => {
             console.log("Fra server", event);
-            setChatLog([...chatLog, event.data])
+            setChatLog((chatLog) => [...chatLog, event.data]);
 
         }
 
