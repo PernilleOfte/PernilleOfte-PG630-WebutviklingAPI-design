@@ -5,17 +5,16 @@ import {LoadingView} from "./loadingView";
 import {ErrorView} from "./errorView";
 
 
-export function ProfilePage(loadProfile) {
+export function ProfilePage({loadProfile}) {
     const {loading, error, data} = useLoading(async() => await loadProfile());
+
+    if (loading){
+        return <LoadingView/>
+    }
 
 if(error){
     return <ErrorView error={error}/>
 }
-if (loading || !data){
-    return <LoadingView/>
-}
-
-
 
 
 
