@@ -2,21 +2,26 @@ import React, {useState} from "react";
 import {Link} from "react-router-dom";
 
 export function RegisterUserPage(){
-    const [firstname,setFirstname]= useState("")
-    const [lastname, setLastname]= useState("")
-    const [email, setEmail]= useState("")
+    const [firstname,setFirstname]= useState("");
+    const [lastname, setLastname]= useState("");
+    const [email, setEmail]= useState("");
 
-    async function submit(e){
+
+    async function submit(e) {
         e.preventDefault();
         console.log("Submitting", {firstname, lastname, email});
         await fetch("/api/users", {
             method: "POST",
-            body: JSON.stringify({firstname,lastname,email}),
+            body: JSON.stringify({firstname, lastname, email}),
             headers: {"Content-Type": "application/json",}
+
         });
-}
+    }
+
+
+
     return (<form onSubmit={submit}>
-        <h1>Create user</h1>
+        <h1>Lag en bruker</h1>
         <div>
             <label>First name:<input type="text"value={firstname} onChange={e => setFirstname(e.target.value)}/></label>
         </div>
@@ -28,11 +33,9 @@ export function RegisterUserPage(){
         </div>
         <button>Register user</button>
 
-
-
     <ul>
-        <Link to={"/users"}>Users</Link>
+        <Link to={"/users"}>Liste over brukere</Link>
     </ul>
 </form>
-    )
+    );
 }

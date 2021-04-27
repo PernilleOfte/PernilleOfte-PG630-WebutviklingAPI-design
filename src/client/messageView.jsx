@@ -1,23 +1,29 @@
 import React, {useState} from "react";
 
-export function ChatView({onSendMessage, chatLog}) {
+
+
+export function MessageView({onSendMessage, messageLog}) {
     const [message, setMessage] = useState("")
+
+
+
 
     function handleSubmitChatMessage(e) {
         e.preventDefault();
         onSendMessage(message);
         setMessage("");
     }
+
     return (
         <>
 
             <header>
-                <h1>This is a chat</h1>
+                <h1>Send en melding {}</h1>
             </header>
             <main id="main-id">
                 <div id="chatLog">
-                    {chatLog.map((message, index) => (
-                        <div key={index}><h4>{message}</h4></div>
+                    {messageLog.map((message, index) => (
+                        <div key={index}><h3>{message}</h3></div>
                     ))}
                 </div>
             </main>

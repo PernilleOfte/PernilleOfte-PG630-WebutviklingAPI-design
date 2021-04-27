@@ -1,4 +1,4 @@
-import {BrowserRouter} from "react-router-dom";
+import {BrowserRouter, Link} from "react-router-dom";
 import {Route, Switch} from "react-router";
 import {FrontPage} from "./frontPage";
 import {ProfilePage} from "./profilePage";
@@ -9,6 +9,8 @@ import {LoginCallback} from "./loginCallback";
 import {RegisterUserPage} from "./registerUserPage";
 import {UserListPage} from "./userListPage";
 import {ChatApplication} from "./chatApplication";
+import {ChatMessage} from "./chatMessage";
+
 
 export function Application() {
     const [access_token, setAccess_token] = useState();
@@ -44,8 +46,13 @@ export function Application() {
     };
 
 
+
     return (
         <BrowserRouter>
+            <header>
+                <Link to={"/"}>Front page</Link>
+            </header>
+
             <Switch>
                 <Route exact path={"/"}>
                     <FrontPage/>
@@ -68,6 +75,10 @@ export function Application() {
                         identityProvider={googleIdentityProvider}
                         onAccessToken={(access_token) => setAccess_token(access_token)}
                     /></h1>
+                </Route>
+
+                <Route path={"/users/:id/chat"}>
+                    <h1><ChatMessage/></h1>
                 </Route>
 
                 <Route exact path={"/users"}>

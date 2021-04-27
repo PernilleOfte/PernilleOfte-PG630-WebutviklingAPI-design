@@ -5,15 +5,8 @@ const bodyparser = require("express");
 const ws = require("ws");
 
 const app = express();
-const users = [
-    {   id: "",
-        firstname: "",
-        lastname: "",
-        email: "",
 
-    }
-];
-
+const users = [];
 
 //Logge inn med google//
 const discoveryURL = "https://accounts.google.com/.well-known/openid-configuration";
@@ -51,7 +44,6 @@ app.use(express.static(path.resolve(__dirname, "..", "..", "dist")));
 
 //Registrere bruker//
 app.get("/api/users", (req, res) => {
-    console.log(users);
     res.json(users);
 });
 
@@ -70,7 +62,6 @@ app.put("/api/users/:id", (req, res) => {
     res.end();
 });
 
-
 app.post("/api/users", (req, res) => {
     const { firstname, lastname, email } = req.body;
     console.log(req.body)
@@ -79,7 +70,6 @@ app.post("/api/users", (req, res) => {
     res.status(201);
     res.end();
 });
-
 
 //Server//
 app.use((req,res,next)=> {
@@ -91,20 +81,19 @@ app.use((req,res,next)=> {
 
 });
 
-
 //For chat//
 const wsServer = new ws.Server({noServer: true});
 const sockets = [];
+
 wsServer.on("connection", (socket) => {
     sockets.push(socket);
     socket.on("message", (message) => {
         for(const socket of sockets){
-            socket.send("Fra server:" + message)
+            socket.send(message)
         }
 
     });
 });
-
 
 const server = app.listen(3000, () => {
     console.log(`Started on port http://localhost:${server.address().port}`);

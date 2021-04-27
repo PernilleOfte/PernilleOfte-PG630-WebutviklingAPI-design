@@ -23,7 +23,7 @@ if(error){
         <div> <img src={data.picture}/></div>
         <div>{data.name}</div>
         <ul>
-            <Link to={"/register"}>Create user</Link>
+            <Link to={"/register"}>Lag en bruker</Link>
         </ul>
     <ul>
         <Link to={"/chat"}>Chat</Link>

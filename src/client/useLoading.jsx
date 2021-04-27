@@ -10,6 +10,7 @@ export function UseLoading(loadingFunction, deps = []) {
         setData(undefined);
         setError(undefined);
 
+
         try {
             setData(await loadingFunction());
         } catch (e) {
