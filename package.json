@@ -6,7 +6,7 @@
     "start": "concurrently npm:start:parcel npm:start:express",
     "start:parcel": "parcel watch public/index.html",
     "start:express": "nodemon --watch src/server src/server/server.js",
-    "test": "jest",
+    "test": "jest --coverage",
     "format": "prettier"
   },
   "repository": {
