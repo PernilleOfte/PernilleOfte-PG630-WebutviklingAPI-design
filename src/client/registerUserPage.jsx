@@ -1,25 +1,21 @@
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
 
-export function CreateUser() {
-    const [firstname,setFirstname]= useState()
-    const [lastname, setLastname]= useState()
-    const [email, setEmail]= useState()
+export function RegisterUserPage(){
+    const [firstname,setFirstname]= useState("")
+    const [lastname, setLastname]= useState("")
+    const [email, setEmail]= useState("")
 
     async function submit(e){
         e.preventDefault();
-        console.log("Submitting")
-        await fetch("/api/user", {
+        console.log("Submitting", {firstname, lastname, email});
+        await fetch("/api/users", {
             method: "POST",
             body: JSON.stringify({firstname,lastname,email}),
-            headers: {
-                "Content-Type": "application/json"
-            }
-        })
-    }
-
-
-    return <form onSubmit={submit}>
+            headers: {"Content-Type": "application/json",}
+        });
+}
+    return (<form onSubmit={submit}>
         <h1>Create user</h1>
         <div>
             <label>First name:<input type="text"value={firstname} onChange={e => setFirstname(e.target.value)}/></label>
@@ -30,9 +26,13 @@ export function CreateUser() {
         <div>
             <label>Email:<input type="text"value={email} onChange={e => setEmail(e.target.value)}/></label>
         </div>
-        <button>Submit</button>
+        <button>Register user</button>
 
 
-    </form>
 
+    <ul>
+        <Link to={"/users"}>Users</Link>
+    </ul>
+</form>
+    )
 }

@@ -8,8 +8,8 @@ export function FrontPage() {
         <ul>
             <Link to={"/login"}>Log in</Link>
         </ul>
-        <ul>
+        {/* <ul>
             <Link to={"/profile"}>Profile</Link>
-        </ul>
-    </div>  ;
+        </ul>*/}
+   </div>  ;
 }

@@ -1,12 +1,12 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import {useLoading} from "./useLoading";
+import {UseLoading} from "./useLoading";
 import {LoadingView} from "./loadingView";
 import {ErrorView} from "./errorView";
 
 
 export function ProfilePage({loadProfile}) {
-    const {loading, error, data} = useLoading(async() => await loadProfile());
+    const {loading, error, data} = UseLoading(async() => await loadProfile());
 
     if (loading){
         return <LoadingView/>
@@ -23,7 +23,7 @@ if(error){
         <div> <img src={data.picture}/></div>
         <div>{data.name}</div>
         <ul>
-            <Link to={"/create"}>Create user</Link>
+            <Link to={"/register"}>Create user</Link>
         </ul>
     <ul>
         <Link to={"/chat"}>Chat</Link>

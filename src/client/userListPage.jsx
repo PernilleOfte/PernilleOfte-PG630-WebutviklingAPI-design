@@ -1,39 +1,33 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import {LoadingView} from "./loadingView";
 import {ErrorView} from "./errorView";
+import { UseLoading } from "./useLoading";
+import {Link} from "react-router-dom";
 
 
-export function UserListPage() {
-    const [users, setUsers] = useState()
-    const [error, setError] = useState()
+export function UserListPage({userApi}) {
+    const { data: users, error, loading, reload } = UseLoading(
+        async () => await userApi.listUsers()
+    );
 
-    async function loadUsers() {
-        try{
-        const res = await fetch("/api/users");
-        if (!res.ok) {
-            throw new Error(`Something went wrong ${rs.url}:${res.statusText}`);
-        }
-        const json = await res.json();
-        setUsers(json);
-    } catch (e) {
-        setError(e);
-    }
-}
-
-    useEffect(loadUsers, []);
 
     if(error){
-        return <ErrorView error={error}/>
+        return <ErrorView error={error} reload={reload}/>
     }
-    if(!users) {
+    if(loading || !users) {
         return <LoadingView/>
     }
 
     return (
         <>
     <h1>All users</h1>
-        {users.map(({users}) => (
-            <li>{users.firstname}</li>
-                ))};
+            {users.map(({id, firstname, lastname, email}) => (
+                <li key={id}>
+                    <Link to={`/users/${id}`}>{firstname} {lastname} {email}</Link>
+                </li>
+
+
+            ))}
     </>
-)};
+);
+}

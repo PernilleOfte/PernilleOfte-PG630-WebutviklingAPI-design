@@ -5,15 +5,17 @@ const bodyparser = require("express");
 const ws = require("ws");
 
 const app = express();
-
 const users = [
-    {
+    {   id: "",
         firstname: "",
         lastname: "",
-        email: ""
-    },
+        email: "",
+
+    }
 ];
 
+
+//Logge inn med google//
 const discoveryURL = "https://accounts.google.com/.well-known/openid-configuration";
 
 async function fetchJson(url,options) {
@@ -43,27 +45,43 @@ app.get("/api/profile", async (req,res,next)=> {
     return res.json(req.userinfo)
 
 });
-
+//Lese body//
 app.use(bodyparser.json());
 app.use(express.static(path.resolve(__dirname, "..", "..", "dist")));
 
-
+//Registrere bruker//
 app.get("/api/users", (req, res) => {
     console.log(users);
     res.json(users);
 });
 
+app.get("/api/users/:id", (req, res) => {
+    const id = parseInt(req.params.id);
+    const user = users.find((b) => b.id == id);
+    res.json(user);
+});
+
+app.put("/api/users/:id", (req, res) => {
+    const id = parseInt(req.params.id);
+    const userIndex = users.findIndex((b) => b.id === id);
+    const { firstname, lastname, email } = req.body;
+    users[userIndex] = { firstname, lastname, email, id };
+    res.status(200);
+    res.end();
+});
 
 
 app.post("/api/users", (req, res) => {
     const { firstname, lastname, email } = req.body;
-    console.log(req.body);
-    users.push({ firstname, lastname, email, id: users.length + 1 });
+    console.log(req.body)
+    users.push({
+        firstname, lastname, email, id: users.length+1 });
     res.status(201);
     res.end();
 });
 
 
+//Server//
 app.use((req,res,next)=> {
     if(req.method === "GET" && !req.path.startsWith("/api")) {
     return res.sendFile(
@@ -73,6 +91,8 @@ app.use((req,res,next)=> {
 
 });
 
+
+//For chat//
 const wsServer = new ws.Server({noServer: true});
 const sockets = [];
 wsServer.on("connection", (socket) => {

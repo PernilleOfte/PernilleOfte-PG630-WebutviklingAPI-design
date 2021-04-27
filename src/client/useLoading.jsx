@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 
-export function useLoading(loadingFunction, deps = []) {
+export function UseLoading(loadingFunction, deps = []) {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState();
     const [data, setData] = useState();
@@ -21,5 +21,5 @@ export function useLoading(loadingFunction, deps = []) {
 
     useEffect(reload, []);
 
-    return {loading, error, data};
+    return {loading, error, data, reload};
 }

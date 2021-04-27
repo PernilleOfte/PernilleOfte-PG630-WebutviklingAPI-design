@@ -6,7 +6,7 @@ import React, {useState} from "react";
 import {fetchJson} from "./http";
 import {LoginPage} from "./loginPage";
 import {LoginCallback} from "./loginCallback";
-import {CreateUser} from "./createUser";
+import {RegisterUserPage} from "./registerUserPage";
 import {UserListPage} from "./userListPage";
 import {ChatApplication} from "./chatApplication";
 
@@ -38,8 +38,11 @@ export function Application() {
                     `Something went wrong loading ${res.url}: ${res.statusText}`
                 );
             }
-        }
+            return await res.json()
+        },
+
     };
+
 
     return (
         <BrowserRouter>
@@ -67,12 +70,12 @@ export function Application() {
                     /></h1>
                 </Route>
 
-                <Route path={"/users"}>
+                <Route exact path={"/users"}>
                     <UserListPage userApi={userApi}/>
                 </Route>
 
-                <Route path={"/create"}>
-                    <CreateUser/>
+                <Route path={"/register"}>
+                    <RegisterUserPage/>
 
                 </Route>
 

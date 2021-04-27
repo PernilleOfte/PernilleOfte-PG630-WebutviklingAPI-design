@@ -10,7 +10,7 @@ export function LoginCallback({onAccessToken}) {
     useEffect(()=> {
         const { access_token } = hash;
         onAccessToken(access_token);
-        history.push("/");
+        history.push("/profile");
     },[]);
 
 
