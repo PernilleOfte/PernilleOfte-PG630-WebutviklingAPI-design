@@ -20,8 +20,12 @@ Ved innlogging vil du komme automatisk inn på din profil-side hvor du kan
 Når du oppretter bruker kan du gå automatisk over til opprettet brukere. 
 Du kan trykke på brukeren for å sende en melding. Det var i hvertfall planen, men fikk ikk det helt til. 
 
-I Chat kan du skrive til til server og få svar. Ved å åpne en til side kan du chatte frem og tilbake. 
+I Chat kan du skrive til til server og få svar. Ved å åpne en til side og logge deg på kan du chatte frem og tilbake med deg selv. 
 
 For å kjøre tester må det kjøres npm test. 
+
+Det har vært vanskelig og gøy. 
+
+All kode er hentet fra forelesning. 
 
 
