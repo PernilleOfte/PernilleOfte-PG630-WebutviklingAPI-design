@@ -1,10 +1,12 @@
 # PernilleOfte-PG630-WebutviklingAPI-design
 
-Eksamensbesvarelse i PG6301 webutvikling og API-design ved Høyskolen Kristiania vår 2021
+Eksamensbesvarelse i PG6301 webutvikling og API-design ved Høyskolen Kristiania vår 2021. 
+Løsningen er kodet med React.
+
 Oppgaven ble sensurert til en B
 
 
-#Kjør applikasjon
+------------------------------------
 
 For å kjøre applikasjonen må du gjøre
 1. Kjør npm install i commando linjen i prosjektet
