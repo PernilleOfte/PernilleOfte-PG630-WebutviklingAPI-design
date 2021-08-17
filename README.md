@@ -8,7 +8,7 @@ Oppgaven ble sensurert til en B
 
 ------------------------------------
 
-For å kjøre applikasjonen må du gjøre
+For å kjøre applikasjonen må du gjøre følgende
 1. Kjør npm install i commando linjen i prosjektet
    
 2. Kjør npm start , server starter på http://localhost:3000
